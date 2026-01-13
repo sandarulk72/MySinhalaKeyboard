@@ -4,6 +4,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
+        // Gradle plugin එකේ ස්ථාවර සංස්කරණයක්
         classpath 'com.android.tools.build:gradle:7.4.2'
     }
 }
@@ -18,6 +19,7 @@ allprojects {
 apply plugin: 'com.android.application'
 
 android {
+    // WickBoardProject ව්‍යුහයට ගැලපෙන ලෙස සැකසුවා
     namespace 'com.wickboard'
     compileSdkVersion 33
 
@@ -27,14 +29,29 @@ android {
         targetSdkVersion 33
         versionCode 1
         versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    // ඔබේ Project එකේ Folder structure එකට ගැලපෙන ලෙස මෙය සැකසූවා
+    // ඔබේ ෆෝල්ඩර් පද්ධතියට ගැලපෙන ලෙස මාවත සකස් කිරීම
     sourceSets {
         main {
             manifest.srcFile 'AndroidManifest.xml'
             java.srcDirs = ['src']
             res.srcDirs = ['res']
+            assets.srcDirs = ['assets']
         }
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+    }
+}
+
+dependencies {
+    // App එකට අවශ්‍ය මූලික Libraries
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.9.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
 }
