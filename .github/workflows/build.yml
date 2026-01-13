@@ -14,10 +14,8 @@ jobs:
           java-version: '17'
           distribution: 'temurin'
 
-      - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
-
-      - name: Build APK
+      - name: Build with Gradle
+        # gradlew නැති නිසා කෙලින්ම gradle command එක පාවිච්චි කරමු
         run: gradle assembleDebug
 
       - name: Upload APK
